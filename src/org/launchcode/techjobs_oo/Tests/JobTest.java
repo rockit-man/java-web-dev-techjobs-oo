@@ -1,9 +1,9 @@
 package org.launchcode.techjobs_oo.Tests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.launchcode.techjobs_oo.Job;
+import org.junit.*;
+import org.launchcode.techjobs_oo.*;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class JobTest {
@@ -20,6 +20,20 @@ public class JobTest {
     @Test
     public void testSettingJobId() {
         assertTrue(job2.getId() - job1.getId() == 1);
+    }
+
+    @Test
+    public void testJobConstructorSetsAllFields() {
+        Job newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
+                "Quality control"), new CoreCompetency("Persistance"));
+
+        assertTrue(newJob instanceof Job);
+
+        assertEquals("Product tester", newJob.getName());
+        assertEquals("ACME", newJob.getEmployer().getValue());
+        assertEquals("Desert", newJob.getLocation().getValue());
+        assertEquals("Quality control", newJob.getPositionType().getValue());
+        assertEquals("Persistance", newJob.getCoreCompetency().getValue());
     }
 
 }
