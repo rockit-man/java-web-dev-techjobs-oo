@@ -3,8 +3,7 @@ package org.launchcode.techjobs_oo.Tests;
 import org.junit.*;
 import org.launchcode.techjobs_oo.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class JobTest {
 
@@ -26,14 +25,21 @@ public class JobTest {
     public void testJobConstructorSetsAllFields() {
         Job newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
                 "Quality control"), new CoreCompetency("Persistance"));
-
         assertTrue(newJob instanceof Job);
-
         assertEquals("Product tester", newJob.getName());
         assertEquals("ACME", newJob.getEmployer().getValue());
         assertEquals("Desert", newJob.getLocation().getValue());
         assertEquals("Quality control", newJob.getPositionType().getValue());
         assertEquals("Persistance", newJob.getCoreCompetency().getValue());
+    }
+
+    @Test
+    public void testJobsForEquality() {
+        Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
+                "Quality control"), new CoreCompetency("Persistance"));
+        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
+                "Quality control"), new CoreCompetency("Persistance"));
+        assertFalse(job3.equals(job4));
     }
 
 }
