@@ -1,5 +1,7 @@
 package org.launchcode.techjobs_oo;
 
+import java.util.Objects;
+
 public class Job {
 
     private int id;
@@ -31,6 +33,30 @@ public class Job {
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
+
+    @Override
+    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+        if (this == o) return true;
+        if (!(o instanceof Job)) return false;
+        Job job = (Job) o;
+        return getId() == job.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    // TODO: Create a toString method that prints each field of the Job object
+
+    public String toString() {
+        return "\nID: " + id +
+            "\nName: " + name +
+            "\nEmployer: " + employer +
+            "\nLocation: " + location +
+            "\nPosition Type: " + positionType +
+            "\nCore Competency: " + coreCompetency + "\n";
+    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.

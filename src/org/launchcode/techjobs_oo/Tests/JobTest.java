@@ -9,11 +9,14 @@ public class JobTest {
 
     Job job1;
     Job job2;
+    Job newJob;
 
     @Before
     public void createJobObjects() {
         job1 = new Job();
         job2 = new Job();
+        newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
+                "Quality control"), new CoreCompetency("Persistance"));
     }
 
     @Test
@@ -23,8 +26,6 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
-        Job newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
-                "Quality control"), new CoreCompetency("Persistance"));
         assertTrue(newJob instanceof Job);
         assertEquals("Product tester", newJob.getName());
         assertEquals("ACME", newJob.getEmployer().getValue());
@@ -35,11 +36,16 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality() {
-        Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
-                "Quality control"), new CoreCompetency("Persistance"));
-        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(
-                "Quality control"), new CoreCompetency("Persistance"));
+        Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistance"));
+        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistance"));
         assertFalse(job3.equals(job4));
     }
 
+    @Test
+    public void testsToStringForBlanksLines() {
+        System.out.println(newJob.toString());
+        assertFalse(newJob.toString().trim().isEmpty());
+    }
 }
