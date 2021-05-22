@@ -50,12 +50,13 @@ public class Job {
     // TODO: Create a toString method that prints each field of the Job object
 
     public String toString() {
-        return "\nID: " + id +
+        String jobString = "\nID: " + id +
             "\nName: " + name +
             "\nEmployer: " + employer +
             "\nLocation: " + location +
             "\nPosition Type: " + positionType +
             "\nCore Competency: " + coreCompetency + "\n";
+        return jobString.replace("null", "Data not available");
     }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
@@ -82,4 +83,5 @@ public class Job {
     public void setPositionType(PositionType positionType) { this.positionType = positionType; }
 
     public void setCoreCompetency(CoreCompetency coreCompetency) { this.coreCompetency = coreCompetency; }
+
 }
